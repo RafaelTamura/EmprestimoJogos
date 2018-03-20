@@ -1,13 +1,13 @@
 # EmprestimoJogos
 Projeto de empréstimo de jogos
 
-Banco de dados utilizado:
+Banco de dados utilizado: 
 SQL SERVER 2016 EXPRESS EDITION
 
-Usuário utilizado no banco de dados:
+Usuário utilizado no banco de dados: 
 SA
 
-Visual Studio 2015 Enterprise
+Visual Studio 2015 Enterprise: 
 ASP.NET MVC
 ENTITY FRAMEWORK
 JQUERY
