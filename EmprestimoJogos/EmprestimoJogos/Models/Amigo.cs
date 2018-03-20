@@ -31,7 +31,6 @@ namespace EmprestimoJogos.Models
 
         [Display(Name = "Localidade")]
         [Required(ErrorMessage = "Uma localidade deve ser selecionada.")]
-        [ForeignKey("Localidade")]
         public Nullable<int> IdLocalidade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
