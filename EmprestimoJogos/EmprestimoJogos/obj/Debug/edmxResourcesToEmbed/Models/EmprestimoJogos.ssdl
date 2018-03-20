@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmprestimoJogosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Amigos">
+    <Key>
+      <PropertyRef Name="IdAmigo" />
+    </Key>
+    <Property Name="IdAmigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdLocalidade" Type="int" />
+  </EntityType>
+  <EntityType Name="Emprestimos">
+    <Key>
+      <PropertyRef Name="IdEmprestimo" />
+    </Key>
+    <Property Name="IdEmprestimo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAmigo" Type="int" Nullable="false" />
+    <Property Name="IdJogo" Type="int" Nullable="false" />
+    <Property Name="DataEmprestimo" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jogos">
+    <Key>
+      <PropertyRef Name="IdJogo" />
+    </Key>
+    <Property Name="IdJogo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Localidades">
+    <Key>
+      <PropertyRef Name="IdLocalidade" />
+    </Key>
+    <Property Name="IdLocalidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Amigo">
+    <End Role="Amigos" Type="Self.Amigos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emprestimos" Type="Self.Emprestimos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Amigos">
+        <PropertyRef Name="IdAmigo" />
+      </Principal>
+      <Dependent Role="Emprestimos">
+        <PropertyRef Name="IdAmigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jogo">
+    <End Role="Jogos" Type="Self.Jogos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emprestimos" Type="Self.Emprestimos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogos">
+        <PropertyRef Name="IdJogo" />
+      </Principal>
+      <Dependent Role="Emprestimos">
+        <PropertyRef Name="IdJogo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Localidade">
+    <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Amigos" Type="Self.Amigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidades">
+        <PropertyRef Name="IdLocalidade" />
+      </Principal>
+      <Dependent Role="Amigos">
+        <PropertyRef Name="IdLocalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmprestimoJogosModelStoreContainer">
+    <EntitySet Name="Amigos" EntityType="Self.Amigos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emprestimos" EntityType="Self.Emprestimos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jogos" EntityType="Self.Jogos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Amigo" Association="Self.FK_Amigo">
+      <End Role="Amigos" EntitySet="Amigos" />
+      <End Role="Emprestimos" EntitySet="Emprestimos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jogo" Association="Self.FK_Jogo">
+      <End Role="Jogos" EntitySet="Jogos" />
+      <End Role="Emprestimos" EntitySet="Emprestimos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Localidade" Association="Self.FK_Localidade">
+      <End Role="Localidades" EntitySet="Localidades" />
+      <End Role="Amigos" EntitySet="Amigos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

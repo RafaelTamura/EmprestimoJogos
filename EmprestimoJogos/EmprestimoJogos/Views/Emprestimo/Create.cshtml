@@ -1,0 +1,56 @@
+﻿@model EmprestimoJogos.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Novo Empréstimo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Novo</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Empréstimo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdAmigo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdAmigo, (IEnumerable<SelectListItem>)ViewBag.Amigos, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdAmigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdJogo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdJogo, (IEnumerable<SelectListItem>)ViewBag.Jogos, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdJogo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataEmprestimo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataEmprestimo, new { htmlAttributes = new { @Value = DateTime.Now.ToString("dd/MM/yyyy"), @class = "form-control datepicker" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

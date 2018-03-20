@@ -1,0 +1,55 @@
+﻿@model EmprestimoJogos.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Remover Empréstimo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remover</h2>
+
+<h3>Deseja realmente remover o empréstimo?</h3>
+<div>
+    @*<h4>Empréstimo</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAmigo)
+        </dt>
+
+        <dd>
+            @if (Model.Amigo != null)
+            {
+                @Html.DisplayFor(model => model.Amigo.Nome)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdJogo)
+        </dt>
+
+        <dd>
+            @if (Model.Jogo != null)
+            {
+                @Html.DisplayFor(model => model.Jogo.Nome)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEmprestimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataEmprestimo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmprestimoJogosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Amigo">
+    <Key>
+      <PropertyRef Name="IdAmigo" />
+    </Key>
+    <Property Name="IdAmigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdLocalidade" Type="Int32" />
+    <NavigationProperty Name="Emprestimos" Relationship="Self.FK_Amigo" FromRole="Amigos" ToRole="Emprestimos" />
+    <NavigationProperty Name="Localidade" Relationship="Self.FK_Localidade" FromRole="Amigos" ToRole="Localidades" />
+  </EntityType>
+  <EntityType Name="Emprestimo">
+    <Key>
+      <PropertyRef Name="IdEmprestimo" />
+    </Key>
+    <Property Name="IdEmprestimo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAmigo" Type="Int32" Nullable="false" />
+    <Property Name="IdJogo" Type="Int32" Nullable="false" />
+    <Property Name="DataEmprestimo" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Amigo" Relationship="Self.FK_Amigo" FromRole="Emprestimos" ToRole="Amigos" />
+    <NavigationProperty Name="Jogo" Relationship="Self.FK_Jogo" FromRole="Emprestimos" ToRole="Jogos" />
+  </EntityType>
+  <EntityType Name="Jogo">
+    <Key>
+      <PropertyRef Name="IdJogo" />
+    </Key>
+    <Property Name="IdJogo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Emprestimos" Relationship="Self.FK_Jogo" FromRole="Jogos" ToRole="Emprestimos" />
+  </EntityType>
+  <EntityType Name="Localidade">
+    <Key>
+      <PropertyRef Name="IdLocalidade" />
+    </Key>
+    <Property Name="IdLocalidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Amigos" Relationship="Self.FK_Localidade" FromRole="Localidades" ToRole="Amigos" />
+  </EntityType>
+  <Association Name="FK_Amigo">
+    <End Role="Amigos" Type="Self.Amigo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emprestimos" Type="Self.Emprestimo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Amigos">
+        <PropertyRef Name="IdAmigo" />
+      </Principal>
+      <Dependent Role="Emprestimos">
+        <PropertyRef Name="IdAmigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Localidade">
+    <End Role="Localidades" Type="Self.Localidade" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Amigos" Type="Self.Amigo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidades">
+        <PropertyRef Name="IdLocalidade" />
+      </Principal>
+      <Dependent Role="Amigos">
+        <PropertyRef Name="IdLocalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jogo">
+    <End Role="Jogos" Type="Self.Jogo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Emprestimos" Type="Self.Emprestimo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogos">
+        <PropertyRef Name="IdJogo" />
+      </Principal>
+      <Dependent Role="Emprestimos">
+        <PropertyRef Name="IdJogo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmprestimoJogosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Amigos" EntityType="Self.Amigo" />
+    <EntitySet Name="Emprestimos" EntityType="Self.Emprestimo" />
+    <EntitySet Name="Jogos" EntityType="Self.Jogo" />
+    <EntitySet Name="Localidades" EntityType="Self.Localidade" />
+    <AssociationSet Name="FK_Amigo" Association="Self.FK_Amigo">
+      <End Role="Amigos" EntitySet="Amigos" />
+      <End Role="Emprestimos" EntitySet="Emprestimos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Localidade" Association="Self.FK_Localidade">
+      <End Role="Localidades" EntitySet="Localidades" />
+      <End Role="Amigos" EntitySet="Amigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jogo" Association="Self.FK_Jogo">
+      <End Role="Jogos" EntitySet="Jogos" />
+      <End Role="Emprestimos" EntitySet="Emprestimos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

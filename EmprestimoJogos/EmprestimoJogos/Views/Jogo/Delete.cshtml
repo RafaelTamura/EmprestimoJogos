@@ -1,0 +1,33 @@
+﻿@model EmprestimoJogos.Models.Jogo
+
+@{
+    ViewBag.Title = "Remover Jogo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remover</h2>
+
+<h3>Deseja realmente remover o jogo?</h3>
+<div>
+    @*<h4>Jogo</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

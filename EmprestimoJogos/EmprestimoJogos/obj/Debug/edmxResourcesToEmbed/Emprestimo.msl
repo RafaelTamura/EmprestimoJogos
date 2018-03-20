@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmprestimosModelStoreContainer" CdmEntityContainer="EmprestimoJogosEntities">
+    <EntitySetMapping Name="Amigos">
+      <EntityTypeMapping TypeName="EmprestimosModel.Amigo">
+        <MappingFragment StoreEntitySet="Amigos">
+          <ScalarProperty Name="IdAmigo" ColumnName="IdAmigo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="IdLocalidade" ColumnName="IdLocalidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emprestimos">
+      <EntityTypeMapping TypeName="EmprestimosModel.Emprestimo">
+        <MappingFragment StoreEntitySet="Emprestimos">
+          <ScalarProperty Name="IdEmprestimo" ColumnName="IdEmprestimo" />
+          <ScalarProperty Name="IdAmigo" ColumnName="IdAmigo" />
+          <ScalarProperty Name="IdJogo" ColumnName="IdJogo" />
+          <ScalarProperty Name="DataEmprestimo" ColumnName="DataEmprestimo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jogos">
+      <EntityTypeMapping TypeName="EmprestimosModel.Jogo">
+        <MappingFragment StoreEntitySet="Jogos">
+          <ScalarProperty Name="IdJogo" ColumnName="IdJogo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localidades">
+      <EntityTypeMapping TypeName="EmprestimosModel.Localidade">
+        <MappingFragment StoreEntitySet="Localidades">
+          <ScalarProperty Name="IdLocalidade" ColumnName="IdLocalidade" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

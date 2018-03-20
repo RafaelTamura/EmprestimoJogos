@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="238f36a6db3143d7b1f1a2dc851149aa" Name="Diagram1">
+        <EntityTypeShape EntityType="EmprestimoJogosModel.Amigo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmprestimoJogosModel.Emprestimo" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmprestimoJogosModel.Jogo" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmprestimoJogosModel.Localidade" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="EmprestimoJogosModel.FK_Amigo" ManuallyRouted="false" />
+        <AssociationConnector Association="EmprestimoJogosModel.FK_Localidade" ManuallyRouted="false" />
+        <AssociationConnector Association="EmprestimoJogosModel.FK_Jogo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

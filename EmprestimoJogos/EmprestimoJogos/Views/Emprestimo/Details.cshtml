@@ -1,0 +1,49 @@
+﻿@model EmprestimoJogos.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Detalhes do Empréstimo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Empréstimo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAmigo)
+        </dt>
+
+        <dd>
+            @if (Model.Amigo != null)
+            {
+                @Html.DisplayFor(model => model.Amigo.Nome)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdJogo)
+        </dt>
+
+        <dd>
+            @if (Model.Jogo != null)
+            {
+                @Html.DisplayFor(model => model.Jogo.Nome)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEmprestimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataEmprestimo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdEmprestimo }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

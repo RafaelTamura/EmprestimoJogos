@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EmprestimoJogos.Models.Emprestimo>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Empréstimo de Jogos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAmigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdJogo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataEmprestimo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Amigo != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Amigo.Nome)
+                }
+            </td>
+            <td>
+                @if (item.Jogo != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Jogo.Nome)
+                }
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DataEmprestimo).ToString("dd/MM/yyyy")
+            </td>
+        </tr>
+    }
+
+</table>
