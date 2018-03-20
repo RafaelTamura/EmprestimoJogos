@@ -147,10 +147,18 @@ namespace EmprestimoJogos.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Amigo amigo = db.Amigos.Find(id);
-            db.Amigos.Remove(amigo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Amigo amigo = db.Amigos.Find(id);
+                db.Amigos.Remove(amigo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                Exception erro = new Exception("Relacionamento entre cadastros não permite a remoção do cadastro atual.");
+                return View("~/views/shared/error.cshtml", new HandleErrorInfo(erro, "Amigo", "Delete"));
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -172,10 +172,17 @@ namespace EmprestimoJogos.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Emprestimo emprestimo = db.Emprestimos.Find(id);
-            db.Emprestimos.Remove(emprestimo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Emprestimo emprestimo = db.Emprestimos.Find(id);
+                db.Emprestimos.Remove(emprestimo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return View("~/views/shared/error.cshtml", new HandleErrorInfo(e, "Amigo", "Delete"));
+            }
         }
 
         protected override void Dispose(bool disposing)

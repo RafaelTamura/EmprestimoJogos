@@ -110,10 +110,18 @@ namespace EmprestimoJogos.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Localidade localidade = db.Localidades.Find(id);
-            db.Localidades.Remove(localidade);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Localidade localidade = db.Localidades.Find(id);
+                db.Localidades.Remove(localidade);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                Exception erro = new Exception("Relacionamento entre cadastros não permite a remoção do cadastro atual.");
+                return View("~/views/shared/error.cshtml", new HandleErrorInfo(erro, "Localidade", "Delete"));
+            }
         }
 
         protected override void Dispose(bool disposing)
